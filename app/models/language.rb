@@ -1,3 +1,4 @@
 class Language < ApplicationRecord
-  belongs_to :user, through :user_language
+  validates :name, presence: true
+  validates :name, uniqueness: true
 end
