@@ -5,6 +5,6 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @sessions = current_user.sessions
+    @lessons = current_user.lessons
   end
 end

@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:destroy, :show]
-  before_action :set_session, only: [:create]
+  before_action :set_lesson, only: [:create]
 
   def index
     @bookings = Booking.all
@@ -15,14 +15,14 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    @booking.session = @session
+    @booking.lesson = @lesson
     flash[:notice] = @booking.errors.full_messages.to_sentence unless @booking.save
-    redirect_to session_path(@sessions)
+    redirect_to lesson_path(@lessons)
   end
 
   def destroy
     @booking.destroy
-    redirect_to session_path(@booking.session)
+    redirect_to lesson_path(@booking.lesson)
   end
 
   private
@@ -35,7 +35,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
-  def set_session
-    @session = Session.find(params[:session_id])
+  def set_lesson
+    @lesson = Lesson.find(params[:lesson_id])
   end
 end

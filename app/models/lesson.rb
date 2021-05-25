@@ -1,9 +1,9 @@
-class Session < ApplicationRecord
+class Lesson < ApplicationRecord
   belongs_to :user
   has_many :bookings
-  has_many :session_topics
+  has_many :lesson_topics
   has_many :bookings
-  has_many :topics, through: :session_topics
+  has_many :topics, through: :lesson_topics
   validates :name, presence: true
   validates :description, presence: true, length: { minimum: 200 }
   validates :price, presence: true

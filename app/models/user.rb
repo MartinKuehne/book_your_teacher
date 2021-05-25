@@ -7,5 +7,5 @@ class User < ApplicationRecord
   has_many :reviews, through: :bookings
   has_many :user_languages
   has_many :languages, through: :user_languages
-  has_many :sessions
+  has_many :lessons
 end

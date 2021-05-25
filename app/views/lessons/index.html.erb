@@ -1,0 +1,15 @@
+<h1>lLessons</h1>
+<div class="container">
+  <div class="row">
+    <% @lessons.each do |lesson| %>
+      <%= link_to lesson_path(lesson) do %>
+        <div class="background">
+        <h1><%= lesson.name %></h1>
+        </div>
+        <p><%= lesson.price %></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to "New Lesson", new_lesson_path %>
