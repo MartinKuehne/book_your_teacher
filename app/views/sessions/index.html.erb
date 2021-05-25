@@ -1,0 +1,15 @@
+<h1>Sessions</h1>
+<div class="container">
+  <div class="row">
+    <% @sessions.each do |session| %>
+      <%= link_to session_path(session) do %>
+        <div class="background">
+        <h1><%= session.name %></h1>
+        </div>
+        <p><%= session.price %></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to "New Session", new_session_path %>

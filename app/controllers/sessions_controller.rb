@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action set_session, only: [:show, :update, :edit, :destroy]
+  before_action :set_session, only: [:show, :update, :edit, :destroy]
   
   def index
     @sessions = Session.all
