@@ -20,10 +20,10 @@ ActiveRecord::Schema.define(version: 2021_05_25_121116) do
     t.datetime "end_time"
     t.string "status", default: "pending"
     t.bigint "user_id", null: false
-    t.bigint "session_id", null: false
+    t.bigint "lesson_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["session_id"], name: "index_bookings_on_session_id"
+    t.index ["lesson_id"], name: "index_bookings_on_lesson_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
@@ -33,6 +33,25 @@ ActiveRecord::Schema.define(version: 2021_05_25_121116) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "lesson_topics", force: :cascade do |t|
+    t.bigint "topic_id", null: false
+    t.bigint "lesson_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lesson_id"], name: "index_lesson_topics_on_lesson_id"
+    t.index ["topic_id"], name: "index_lesson_topics_on_topic_id"
+  end
+
+  create_table "lessons", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "price"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_lessons_on_user_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.text "comment"
     t.integer "rating"
@@ -40,25 +59,6 @@ ActiveRecord::Schema.define(version: 2021_05_25_121116) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "booking_id", null: false
     t.index ["booking_id"], name: "index_reviews_on_booking_id"
-  end
-
-  create_table "session_topics", force: :cascade do |t|
-    t.bigint "topic_id", null: false
-    t.bigint "session_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["session_id"], name: "index_session_topics_on_session_id"
-    t.index ["topic_id"], name: "index_session_topics_on_topic_id"
-  end
-
-  create_table "sessions", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "price"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
   create_table "topics", force: :cascade do |t|
@@ -93,12 +93,12 @@ ActiveRecord::Schema.define(version: 2021_05_25_121116) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "bookings", "sessions"
+  add_foreign_key "bookings", "lessons"
   add_foreign_key "bookings", "users"
+  add_foreign_key "lesson_topics", "lessons"
+  add_foreign_key "lesson_topics", "topics"
+  add_foreign_key "lessons", "users"
   add_foreign_key "reviews", "bookings"
-  add_foreign_key "session_topics", "sessions"
-  add_foreign_key "session_topics", "topics"
-  add_foreign_key "sessions", "users"
   add_foreign_key "user_languages", "languages"
   add_foreign_key "user_languages", "users"
 end

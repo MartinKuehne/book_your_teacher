@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    <% @sessions.each do |session| %>
-      <%= link_to session.name, session_path(session) %>
-      <% session.bookings.each do |booking| %>
+    <% @lessons.each do |lesson| %>
+      <%= link_to lesson.name, lesson_path(lesson) %>
+      <% lesson.bookings.each do |booking| %>
         <h3><%= booking.user.email %> <%#= booking.user.last_name %></h3>
         <p><%= booking.start_time %> - <%= booking.end_time %></p>
         <div class="status">
