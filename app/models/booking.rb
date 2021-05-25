@@ -4,4 +4,10 @@ class Booking < ApplicationRecord
   has_many :reviews
   validates :start_time, presence: true
   validates :end_time, presence: true
+
+  before_update :reset_status
+
+  def reset_status
+    status = "pending"
+  end
 end

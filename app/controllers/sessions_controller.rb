@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-  before_action set_session, only: [:show, :update, :edit, :destroy]
-  
+  before_action :set_session, only: [:show, :update, :edit, :destroy]
+
   def index
     @sessions = Session.all
   end
@@ -39,7 +39,7 @@ class SessionsController < ApplicationController
   private
 
   def set_session
-    @session = Session.find(params[:session_id])
+    @session = Session.find(params[:id])
   end
 
   def session_params

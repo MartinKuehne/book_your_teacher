@@ -1,0 +1,11 @@
+<h1><%= @session.name %></h1>
+<div class="container">
+  <div class="row">
+    <p><%= @session.description %></p>
+    <p><%= @session.price %></p>
+  </div>
+</div>
+
+<% if current_user.sessions.include? @session %>
+  <%= link_to "Edit session", edit_session_path(@session) %>
+<% end %>

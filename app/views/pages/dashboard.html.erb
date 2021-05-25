@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <% @sessions.each do |session| %>
+      <%= link_to session.name, session_path(session) %>
+      <% session.bookings.each do |booking| %>
+        <h3><%= booking.user.email %> <%#= booking.user.last_name %></h3>
+        <p><%= booking.start_time %> - <%= booking.end_time %></p>
+        <div class="status">
+          <p><%= booking.status %></p>
+          <%= link_to "Accept", root_path, notice: "We need to add an acceptance path, touching the bookings controller (see pages/dashboard)" %>
+          <%= link_to "Reject", root_path, notice: "We need to add an reject path, touching the bookings controller (see pages/dashboard)" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
