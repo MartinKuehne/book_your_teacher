@@ -12,10 +12,9 @@ class LessonsController < ApplicationController
 
   def create
     @lesson = Lesson.new(lesson_params)
-    @user = User.find(params[:user_id])
-    @lesson.user = @user
-    if @lesson.save!
-      redirect_to @lesson, notice: "Lesson was successfully created"
+    @lesson.user_id = current_user.id
+    if @lesson.save
+      redirect_to lesson_path(@lesson), notice: "Lesson was successfully created"
     else
       render :new
     end
