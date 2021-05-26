@@ -1,15 +1,39 @@
-<h1>lLessons</h1>
-<div class="container">
-  <div class="row">
-    <% @lessons.each do |lesson| %>
-      <%= link_to lesson_path(lesson) do %>
-        <div class="background">
-        <h1><%= lesson.name %></h1>
-        </div>
-        <p><%= lesson.price %></p>
-      <% end %>
-    <% end %>
-  </div>
-</div>
+<main>
 
-<%= link_to "New Lesson", new_lesson_path %>
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Lessons overview</h1>
+        <p class="lead text-muted">Below you can choose from the best teachers out there. Click on 'View' to see more details or select 'Book' to quickly book a session of your liking.</p>
+        <p>
+        <%= link_to  "Dashboard", dashboard_path, class: "btn btn-primary my-2" %>
+        <%= link_to  "New Lesson", new_lesson_path, class: "btn btn-secondary my-2" %>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <% @lessons.each do |lesson| %>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="https://source.unsplash.com/wpU4veNGnHg/450x300/" alt="">
+            <div class="card-body">
+              <p class="card-text"><strong><%= link_to  lesson.name, lesson_path(lesson) %> </strong></p>
+              <p class="card-text"><%= lesson.description %> </p>
+              <p class="card-text">Price: <%= lesson.price %>€ </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary"><%= link_to  'View', lesson_path(lesson) %></button>
+                </div>
+                <small class="text-muted">By <%= lesson.user.first_name %></small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+</main>
