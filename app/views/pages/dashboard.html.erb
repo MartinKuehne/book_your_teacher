@@ -1,21 +1,33 @@
 <div class="container">
+
+  <div class="text-center">
+  <h1>Dashboard</h1>
+  </div>
+
   <div class="row">
     <% @lessons.each do |lesson| %>
-      <%= link_to lesson.name, lesson_path(lesson) %>
+    <div class="container">
+      <h3><%= link_to lesson.name, lesson_path(lesson) %></h3>
+      <p><%= lesson.description %> </p>
+      <h5>Bookings: </h5>
+      <div class="container">
+      <% if lesson.bookings.nil? %>
+        <p>No bookings yet.</p>
+      <% else %>
       <% lesson.bookings.each do |booking| %>
-        <h3><%= booking.user.first_name %> <%= booking.user.last_name %></h3>
-        <p><%= booking.start_time %> - <%= booking.end_time %></p>
-        <div class="status">
-          <p><%= booking.status %></p>
-          <% if current_user.lessons.include? @lesson %>
-            <%= link_to "Accept", root_path, notice: "Lesson accepted" %>
-            <%= link_to "Reject", root_path, notice: "Lesson rejected" %>
-          <% end %>
+        <h6>User: <strong> <%= booking.user.first_name %> <%= booking.user.last_name %></strong></h6>
+        <p>Time: <%= booking.start_time %> - <%= booking.end_time %> <br>
+        Status: <u><%= booking.status %></u></p>
+        <%= link_to  "Accept", lessons_path, class: "btn btn-primary btn-sm mb-3" %>
+        <%= link_to  "Reject", lessons_path, class: "btn btn-danger btn-sm mb-3" %>
           <% if booking.status == "Rejected" %>
             <%= link_to "Delete", booking_path(booking), method: :delete, data: { confirm: "Are you sure?" } %>
           <% end %>
-        </div>
       <% end %>
+      <% end %>
+      </div>
+      <p>_____________________________________________________________________________</p>
+      </div>
     <% end %>
   </div>
 </div>

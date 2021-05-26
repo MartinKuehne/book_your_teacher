@@ -30,6 +30,9 @@ b3 = Booking.create(start_time: '2021-11-19T08:37:48+00:00', end_time: '2021-11-
 b4 = Booking.create(start_time: '2021-11-19T08:37:48+00:00', end_time: '2021-11-20T08:37:48+00:00', user: u3, lesson: l2)
 b5 = Booking.create(start_time: '2021-11-19T08:37:48+00:00', end_time: '2021-11-20T08:37:48+00:00', user: u3, lesson: l2)
 b6 = Booking.create(start_time: '2021-11-19T08:37:48+00:00', end_time: '2021-11-20T08:37:48+00:00', user: u4, lesson: l1)
+b7 = Booking.create(start_time: '2021-11-19T08:37:48+00:00', end_time: '2021-11-20T08:37:48+00:00', user: u3, lesson: l5)
+b8 = Booking.create(start_time: '2021-11-19T08:37:48+00:00', end_time: '2021-11-20T08:37:48+00:00', user: u2, lesson: l5)
+b9 = Booking.create(start_time: '2021-11-19T08:37:48+00:00', end_time: '2021-11-20T08:37:48+00:00', user: u2, lesson: l6)
 
 la1 = Language.create!(name: 'Ruby')
 la2 = Language.create(name: 'Ruby on Rails')

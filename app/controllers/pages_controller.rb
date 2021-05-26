@@ -9,5 +9,8 @@ class PagesController < ApplicationController
   end
 
   def profile
+    @user = User.find(params[:id])
+    @language = Language.new
+    @languages = Language.all
   end
 end
