@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :bookings, only: :create
   end
   get "/dashboard", to: 'pages#dashboard'
+  get "/profile", to: 'pages#profile'
   #  we need to create profil route
   resources :bookings, except: :create
 end
