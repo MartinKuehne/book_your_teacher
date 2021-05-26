@@ -1,11 +1,11 @@
-<h1><%= @lesson.name %></h1>
+<h1 class="text-center"><%= @lesson.name %></h1>
 <div class="container">
   <div class="row">
     <% user = "#{@lesson.user.first_name} #{@lesson.user.last_name}"%>
-    <%= link_to user, root_path %>
+    <h3> Teacher: <%= link_to user, root_path %> </h3>
     <!-- change root path to user path  -->
     <p><%= @lesson.description %></p>
-    <p><%= @lesson.price %></p>
+    <p>The hourly rate for this lesson is: <strong><u> <%= @lesson.price %>€ </u></strong></p>
   </div>
 </div>
 
@@ -14,6 +14,7 @@
 <% else %>
   <div class="container">
     <div class="row">
+    <h3>Book this session:</h3>
       <%= render 'form', lesson: @lesson, booking: @booking%>
     </div>
   </div>
