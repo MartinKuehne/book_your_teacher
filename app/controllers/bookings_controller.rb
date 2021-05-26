@@ -16,8 +16,9 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.lesson = @lesson
+    @booking.user = current_user
     flash[:notice] = @booking.errors.full_messages.to_sentence unless @booking.save
-    redirect_to lesson_path(@lessons)
+    redirect_to dashboard_path
   end
 
   def destroy
@@ -28,7 +29,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:start_time, :end_time, :user_id)
+    params.require(:booking).permit(:date, :start_time, :end_time, :user_id)
   end
 
   def set_booking

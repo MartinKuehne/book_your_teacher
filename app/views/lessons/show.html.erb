@@ -1,6 +1,9 @@
 <h1><%= @lesson.name %></h1>
 <div class="container">
   <div class="row">
+    <% user = "#{@lesson.user.first_name} #{@lesson.user.last_name}"%>
+    <%= link_to user, root_path %>
+    <!-- change root path to user path  -->
     <p><%= @lesson.description %></p>
     <p><%= @lesson.price %></p>
   </div>
@@ -8,5 +11,10 @@
 
 <% if current_user.lessons.include? @lesson %>
   <%= link_to "Edit lesson", edit_lesson_path(@lesson) %>
+<% else %>
+  <div class="container">
+    <div class="row">
+      <%= render 'form', lesson: @lesson, booking: @booking%>
+    </div>
+  </div>
 <% end %>
-W
