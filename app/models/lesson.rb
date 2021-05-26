@@ -5,6 +5,6 @@ class Lesson < ApplicationRecord
   has_many :bookings
   has_many :topics, through: :lesson_topics
   validates :name, presence: true
-  validates :description, presence: true, length: { minimum: 200 }
+  validates :description, presence: true, length: { minimum: 20 }
   validates :price, presence: true
 end
