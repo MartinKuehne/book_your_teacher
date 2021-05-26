@@ -1,0 +1,16 @@
+<div class="container text-center">
+<h1><%= @user.first_name %> <%= @user.last_name %> </h1>
+<p>Based in <%= @user.location %> </p>
+<p>E-Mail: <%= @user.email %> </p>
+<h4>Years of experience: <%= @user.years_of_exp %> </h4>
+<p>Her languages are:</p>
+<% @user.languages.each do |language| %>
+<p><%= language.name %></p>
+<% end %>
+</div>
+<% if current_user == @user %>
+<%= simple_form_for [@user, @language] do |f| %>
+  <%= f.input :name, collection: @languages%>
+  <%= f.submit 'Add language'%>
+<% end %>
+<% end %>

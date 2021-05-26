@@ -5,4 +5,13 @@ Rails.application.routes.draw do
   resources :lessons
   get "/dashboard", to: 'pages#dashboard'
   resources :bookings
+
+  
+  resources :users, only: [:show] do
+    resources :languages, only: [:create]
+  end
+
+  resources :languages, only: [:destroy] do
+    resources :user_languages, only: [:new, :create]
+  end
 end
