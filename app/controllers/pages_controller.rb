@@ -7,4 +7,7 @@ class PagesController < ApplicationController
   def dashboard
     @lessons = current_user.lessons
   end
+
+  def profile
+  end
 end
