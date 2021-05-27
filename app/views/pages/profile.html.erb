@@ -1,10 +1,18 @@
-<div class="container text-center">
-<h1><%= @user.first_name %> <%= @user.last_name %> </h1>
-<p>Based in <%= @user.location %> </p>
-<p>E-Mail: <%= @user.email %> </p>
-<h4>Years of experience: <%= @user.years_of_exp %> </h4>
-<p>The languages of this teacher are:</p>
-<% @user.languages.each do |language| %>
-<p><%= language.name %></p>
-<% end %>
+<div class="container text-left">
+  <div class="row">
+    <div class="col">
+      <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+      <p>Based in <%= @user.location %> </p>
+      <p>E-Mail: <%= @user.email %> </p>
+      <p>Years of experience: <%= @user.years_of_exp %> </p>
+    </div>
+    <div class="col">
+      <h4>The languages of this teacher are:</h4>
+      <ul class="lanugages">
+        <% @user.languages.each do |language| %>
+          <li><%= language.name %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
