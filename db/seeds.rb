@@ -10,6 +10,7 @@ Lesson.delete_all
 UserLanguage.delete_all
 User.delete_all
 Language.delete_all
+Review.delete_all
 
 u1 = User.create!(email: "marnie@marnie.com", password: 'password', password_confirmation: 'password', created_at: "2011-05-25 12:25:45", updated_at: "2021-05-25 12:28:10", first_name: 'Marnie', last_name: 'The First', years_of_exp: 1, location: 'Berlin', avatar: 'https://source.unsplash.com/X6Uj51n5CE8/500x300')
 u2 = User.create!(email: "yuno@yuno.com", password: 'password', password_confirmation: 'password', created_at: "2011-05-25 12:25:45", updated_at: "2021-05-25 12:28:10", first_name: 'Yuno', last_name: 'The Second', years_of_exp: 2, location: 'Berlin', avatar: 'https://source.unsplash.com/X6Uj51n5CE8/500x300')
@@ -57,3 +58,19 @@ UserLanguage.create(user: u4, language: la4)
 UserLanguage.create(user: u4, language: la5)
 UserLanguage.create(user: u4, language: la6)
 UserLanguage.create(user: u4, language: la7)
+
+Review.create(rating: 3, comment: 'Very interesting session, liked it!', booking: b1)
+Review.create(rating: 5, comment: 'Very interesting session, liked it!', booking: b2)
+Review.create(rating: 4, comment: 'Very interesting session, liked it!', booking: b3)
+Review.create(rating: 2, comment: 'Very interesting session, liked it!', booking: b4)
+Review.create(rating: 5, comment: 'Very interesting session, liked it!', booking: b5)
+Review.create(rating: 4, comment: 'Very interesting session, liked it!', booking: b6)
+Review.create(rating: 3, comment: 'Very interesting session, liked it!', booking: b7)
+Review.create(rating: 4, comment: 'Very interesting session, liked it!', booking: b8)
+Review.create(rating: 5, comment: 'Very interesting session, liked it!', booking: b9)
+Review.create(rating: 2, comment: 'Very interesting session, liked it!', booking: b2)
+Review.create(rating: 1, comment: 'Very interesting session, liked it!', booking: b4)
+Review.create(rating: 4, comment: 'Very interesting session, liked it!', booking: b6)
+Review.create(rating: 5, comment: 'Very interesting session, liked it!', booking: b9)
+Review.create(rating: 5, comment: 'Very interesting session, liked it!', booking: b5)
+Review.create(rating: 3, comment: 'Very interesting session, liked it!', booking: b7)
