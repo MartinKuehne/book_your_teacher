@@ -11,7 +11,7 @@
             Location: <%= booking.lesson.user.location %> </p>
           </p>
           <div class="btn btn-primary"><%= booking.status.capitalize %> </div>
-          <div class="btn btn-warning">Leave a review </div>
+          <div class="btn btn-warning"><%= link_to  "Leave a review", new_review_path(@review), class: 'line-dark' %></div>
         </div>
       </div>
     <% end %>

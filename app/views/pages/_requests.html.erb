@@ -9,9 +9,11 @@
             <p class="card-text">
             From: <%= booking.start_time.strftime("%F") %> <%= booking.start_time.strftime("at %I:%M%p") %> <br> 
             To: <%= booking.end_time.strftime("%F") %> <%= booking.end_time.strftime("at %I:%M%p") %> <br>
-            Location: <%= booking.lesson.user.location %> <br> </p>
-            <%= link_to  "Accept", lessons_path, class: "btn btn-success btn-sm mb-3" %>
-            <%= link_to  "Reject", lessons_path, class: "btn btn-danger btn-sm mb-3" %>
+            Location: <%= booking.lesson.user.location %> <br> 
+            Status: <%= booking.status %> <br>
+            </p>
+            <%= link_to "Accept", booking_path(booking.id, status: 'accepted'), method: 'patch', class: "btn btn-success mb-3" %>
+            <%= link_to "Decline", booking_path(booking.id, status: 'declined'), method: 'patch', class: "btn btn-danger mb-3" %>
           </div>
         </div>
       <% end %>
