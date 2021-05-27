@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:destroy, :show]
+  before_action :set_booking, only: [:destroy, :show, :update]
   before_action :set_lesson, only: [:create]
 
   def index
@@ -27,6 +27,12 @@ class BookingsController < ApplicationController
   def destroy
     @booking.destroy
     redirect_to lesson_path(@booking.lesson)
+  end
+
+  def update
+    @booking.status = params[:status]
+    @booking.save
+    redirect_to dashboard_path
   end
 
   private

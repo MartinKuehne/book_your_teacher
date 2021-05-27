@@ -10,5 +10,8 @@ Rails.application.routes.draw do
   get "/profile", to: 'pages#profile'
   #  we need to create profil route
   resources :bookings, except: :create
-  resources :reviews, except: :create
+  resources :reviews
+  resources :pages do
+    resources :reviews, only: [:new, :create]
+  end
 end
