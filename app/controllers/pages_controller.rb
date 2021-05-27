@@ -6,6 +6,8 @@ class PagesController < ApplicationController
 
   def dashboard
     @lessons = current_user.lessons
+    @bookings = current_user.bookings
+    @active_tab = params[:active_tab]
   end
 
   def profile
