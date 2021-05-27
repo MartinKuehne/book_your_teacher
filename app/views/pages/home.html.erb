@@ -2,6 +2,15 @@
 
 <h1 class="mt-5">Find your next teacher</h1>
 <p>Join now for exclusive access to the worlds best teachers and mentors. </p>
-<%= link_to  "Explore", lessons_path, class: "btn btn-primary btn-lg mt-3" %>
+<%= form_tag lessons_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Find a lesson"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary btn-lg mt-3" %>
+<% end %>
+<br>
+<%= link_to  "Browse all lessons", lessons_path %>
 </div>
 

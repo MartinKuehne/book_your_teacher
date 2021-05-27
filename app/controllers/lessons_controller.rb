@@ -2,8 +2,11 @@ class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :update, :edit, :destroy]
 
   def index
-    @lessons = Lesson.all
-    @users = User.all
+    if params[:query].present?
+      @lessons = Lesson.user_and_lesson(params[:query])
+    else
+      @lessons = Lesson.all
+    end
   end
 
   def new
