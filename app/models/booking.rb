@@ -10,4 +10,12 @@ class Booking < ApplicationRecord
   def reset_status
     status = "pending"
   end
+
+  def set_accepted
+    status = "accepted"
+  end
+
+  def set_declined
+    status = "declined"
+  end
 end
