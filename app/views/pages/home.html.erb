@@ -1,16 +1,18 @@
-<div class="text-center">
-
-<h1 class="mt-5">Find your next teacher</h1>
-<p>Join now for exclusive access to the worlds best teachers and mentors. </p>
-<%= form_tag lessons_path, method: :get do %>
-  <%= text_field_tag :query,
-    params[:query],
-    class: "form-control",
-    placeholder: "Find a lesson"
-  %>
-  <%= submit_tag "Search", class: "btn btn-primary btn-lg mt-3" %>
-<% end %>
-<br>
-<%= link_to  "Browse all lessons", lessons_path %>
-</div>
-
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="mt-5">Le Wagon Black Market</h1>
+      <h1>🤫</h1><br>
+      <%= form_tag lessons_path, method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Search for a lesson or for your favorite TA"
+        %>
+        <%= submit_tag "Search", class: "btn-submit" %>
+      <% end %>
+      <br>
+      <%= link_to  "Browse all lessons", lessons_path %>
+    </div>
+  </div>
+</section>
