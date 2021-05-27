@@ -26,6 +26,7 @@
 #container-body {
   min-height:100%;
   position:relative;
+  background-color: black;
 }
 
 #body {
@@ -41,6 +42,14 @@
   background:#6cf;
 }
 
-.black-bg {
-  background-color: black;
+html, body {
+  background: black;
+}
+
+h1, h2, h3, h4 {
+  color: white;
+}
+
+p {
+  color: #9B9B9B;
 }

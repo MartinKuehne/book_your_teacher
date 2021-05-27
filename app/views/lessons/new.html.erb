@@ -4,10 +4,12 @@
       <h1 class="fw-light">Create a new lesson</h1>
       <p class="lead text-muted">Are you a teacher? Create your lesson below:</p>
       <%= simple_form_for @lesson do |f| %>
-        <%= f.input :name, placeholder: 'Intro to CSS' %>
-        <%= f.input :description, placeholder: 'Setting classes & IDs' %>
-        <%= f.input :price, label: 'Price per hour', placeholder: '€' %>
-        <%= f.submit class: 'btn btn-primary my-2' %>
+        <%= f.input :name, placeholder: 'Intro to CSS', :label_html => { :class => 'label-style' } %>
+        <%= f.input :description, placeholder: 'Setting classes & IDs', :label_html => { :class => 'label-style' } %>
+        <%= f.input :price, label: 'Price per hour', placeholder: '€', :label_html => { :class => 'label-style' } %>
+        <button class="btn-accept">Create lesson <% f.submit  %>
+        </button>
+
       <% end %>
     </div>
   </div>

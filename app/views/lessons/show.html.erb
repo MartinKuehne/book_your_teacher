@@ -3,49 +3,53 @@
 <% @lesson.reviews.each { |review| rating_average += review.rating} %>
 <% rating_average = rating_average/@lesson.reviews.length %>
 <% end %>
-
-<h1 class="text-center"><%= @lesson.name %></h1>
-<div class="container">
-  <div class="row">
-    <% user = "#{@lesson.user.first_name} #{@lesson.user.last_name}"%>
-    <h3> Teacher: <%= link_to user, root_path %> </h3>
-    <!-- change root path to user path  -->
-    <div class="row">
-      <button id="click" class="btn btn-primary btn-sm mb-3">
-        Check profile
-      </button>
+<section class="py-5 text-center container">
+  <h1 class="text-center text-white"><%= @lesson.name %></h1>
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto font-white">
+      <div class="row">
+        <% user = "#{@lesson.user.first_name} #{@lesson.user.last_name}"%>
+        <h3> Teacher: <%= link_to user, root_path %> </h3>
+        <!-- change root path to user path  -->
+<!--         <div class="row">
+          <button id="click" class="btn btn-primary btn-sm mb-3">
+            Check profile
+          </button>
+        </div> -->
+        <div class="row d-none user-info">
+          <p>Based in <%= @lesson.user.location %> </p>
+          <p>E-Mail: <%= @lesson.user.email %> </p>
+          <p>Years of experience: <%= @lesson.user.years_of_exp %> </p>
+          <h3>Languages: </h3>
+          <% @lesson.user.languages.each do |language| %>
+              <p><%= language.name %> </p>
+            <% end %>
+        </div>
+        <p><%= @lesson.description %></p>
+        <p><strong><u><%= @lesson.price %>€ / hour</u></strong></p>
+        <p>Ratings (<%= @lesson.reviews.length %>): <%= rating_average ? rating_average : 'No ratings yet' %>/5 </p>
+      </div>
     </div>
-    <div class="row d-none user-info">
-      <p>Based in <%= @lesson.user.location %> </p>
-      <p>E-Mail: <%= @lesson.user.email %> </p>
-      <p>Years of experience: <%= @lesson.user.years_of_exp %> </p>
-      <h3>Languages: </h3>
-      <% @lesson.user.languages.each do |language| %>
-          <p><%= language.name %> </p>
-        <% end %>
+    <div class="col-lg-6 col-md-8 mx-auto font-white">
+      <h3>Reviews</h3>
+      <% @lesson.reviews.each do |review| %>
+        <p>Rating: <%= review.rating %></p>
+        <p>Comment: <%= review.comment %></p>
+      <% end %>
     </div>
-    <p><%= @lesson.description %></p>
-    <p>The hourly rate for this lesson is: <strong><u> <%= @lesson.price %>€ </u></strong></p>
-    <p>Ratings (<%= @lesson.reviews.length %>): <%= rating_average ? rating_average : 'No ratings yet' %>/5 </p>
-
+    <div class="col-lg-6 col-md-8 mx-auto font-white mt-5">
+      <% if current_user.lessons.include? @lesson %>
+        <button class="btn-yellow">
+          Edit lesson<%= link_to "", edit_lesson_path(@lesson) %>
+        </button>
+      <% else %>
+        <div class="container">
+          <div class="row">
+          <h3>Book this session:</h3>
+            <%= render 'form', lesson: @lesson, booking: @booking%>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
-
-<% if current_user.lessons.include? @lesson %>
-  <%= link_to "Edit lesson", edit_lesson_path(@lesson) %>
-<% else %>
-  <div class="container">
-    <div class="row">
-    <h3>Book this session:</h3>
-      <%= render 'form', lesson: @lesson, booking: @booking%>
-    </div>
-  </div>
-<% end %>
-
-<div class="container mt-3">
-<h3>Reviews</h3>
-<% @lesson.reviews.each do |review| %>
-  <p>Rating: <%= review.rating %></p>
-  <p>Comment: <%= review.comment %></p>
-<% end %>
-</div>
+</section>

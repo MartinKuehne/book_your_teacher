@@ -1,5 +1,5 @@
 <%= simple_form_for [lesson, booking] do |f| %>
-  <%= f.input :start_time, as: :string %>
-  <%= f.input :end_time, as: :string %>
-  <%= f.submit "Book now", class: "btn-submit" %>
+  <%= f.input :start_time, as: :string, :label_html => { :class => 'label-style' } %>
+  <%= f.input :end_time, as: :string, :label_html => { :class => 'label-style' } %>
+  <button class="btn-blue">Book now<% f.submit "Book now" %></button>
 <% end %>
