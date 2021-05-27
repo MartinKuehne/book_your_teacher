@@ -8,4 +8,13 @@ class Lesson < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true, length: { minimum: 20 }
   validates :price, presence: true
+  include PgSearch::Model
+  pg_search_scope :user_and_lesson,
+                  associated_against: {
+                    user: [:first_name, :last_name]
+                  },
+                  against: :name,
+                  using: {
+                    tsearch: { prefix: true }
+                  }
 end
