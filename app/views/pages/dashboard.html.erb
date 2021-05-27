@@ -30,4 +30,12 @@
       </div>
     <% end %>
   </div>
+
+  <h3>Your Bookings</h3>
+    <% @bookings.each do |booking| %>
+      <p>Lesson: <%= link_to booking.lesson.name, lesson_path(booking.lesson) %> </p>
+      <p>Teacher: <%= booking.lesson.user.first_name %> <%= booking.lesson.user.last_name %> </p>
+      <p>Time: <%= booking.start_time %> - <%= booking.end_time %> </p>
+      <p>Location: <%= booking.lesson.user.location %> </p>
+    <% end %>
 </div>

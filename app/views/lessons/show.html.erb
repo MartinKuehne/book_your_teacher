@@ -1,3 +1,9 @@
+<% if @lesson.reviews.length != 0 %>
+<% rating_average = 0 %>
+<% @lesson.reviews.each { |review| rating_average += review.rating} %>
+<% rating_average = rating_average/@lesson.reviews.length %>
+<% end %>
+
 <h1 class="text-center"><%= @lesson.name %></h1>
 <div class="container">
   <div class="row">
@@ -6,6 +12,7 @@
     <!-- change root path to user path  -->
     <p><%= @lesson.description %></p>
     <p>The hourly rate for this lesson is: <strong><u> <%= @lesson.price %>€ </u></strong></p>
+    <p>Ratings (<%= @lesson.reviews.length %>): <%= rating_average ? rating_average : 'No ratings yet' %>/5 </p>
   </div>
 </div>
 
@@ -19,3 +26,11 @@
     </div>
   </div>
 <% end %>
+
+<div class="container mt-3">
+<h3>Reviews</h3>
+<% @lesson.reviews.each do |review| %>
+  <p>Rating: <%= review.rating %></p>
+  <p>Comment: <%= review.comment %></p>
+<% end %>
+</div>
