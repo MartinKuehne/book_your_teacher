@@ -1,0 +1,13 @@
+  <div class="d-flex flex-wrap justify-content-around">
+    <% @lessons.each do |lesson| %>
+      <div class="card m-3" style="width: 70vw;">
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to lesson.name, lesson_path(lesson), class: 'link-dark' %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"> Created by you</h6>
+          <p class="card-text"><%= lesson.description %> </p>
+          <%= link_to 'Show', lesson_path(lesson), class: "btn btn-primary btn-sm mb-3" %>
+          <%= link_to 'Edit', lesson_path(lesson), class: "btn btn-warning btn-sm mb-3" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
