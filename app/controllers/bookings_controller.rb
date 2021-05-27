@@ -17,6 +17,9 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.lesson = @lesson
     @booking.user = current_user
+    @booking.end_time = @booking.end_time.change(day: @booking.start_time.day)
+    @booking.end_time = @booking.end_time.change(month: @booking.start_time.month)
+    @booking.end_time = @booking.end_time.change(year: @booking.start_time.year)
     flash[:notice] = @booking.errors.full_messages.to_sentence unless @booking.save
     redirect_to dashboard_path
   end

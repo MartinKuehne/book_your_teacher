@@ -10,4 +10,8 @@ class Booking < ApplicationRecord
   def reset_status
     status = "pending"
   end
+
+  def total_price
+    ((end_time - start_time) / 3600.to_f) * lesson.price
+  end
 end

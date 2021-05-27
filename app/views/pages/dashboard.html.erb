@@ -14,28 +14,30 @@
       <% if lesson.bookings.nil? %>
         <p>No bookings yet.</p>
       <% else %>
-      <% lesson.bookings.each do |booking| %>
-        <h6>User: <strong> <%= booking.user.first_name %> <%= booking.user.last_name %></strong></h6>
-        <p>Time: <%= booking.start_time %> - <%= booking.end_time %> <br>
-        Status: <u><%= booking.status %></u></p>
-        <%= link_to  "Accept", lessons_path, class: "btn btn-primary btn-sm mb-3" %>
-        <%= link_to  "Reject", lessons_path, class: "btn btn-danger btn-sm mb-3" %>
-          <% if booking.status == "Rejected" %>
-            <%= link_to "Delete", booking_path(booking), method: :delete, data: { confirm: "Are you sure?" } %>
-          <% end %>
-      <% end %>
+        <% lesson.bookings.each do |booking| %>
+          <h6>User: <strong> <%= booking.user.first_name %> <%= booking.user.last_name %></strong></h6>
+          <p>Time: <%= booking.start_time.strftime('%b %e, %l:%M %p') %> - <%= booking.end_time.strftime('%l:%M %p') %> <br>
+          Status: <u><%= booking.status %></u></p>
+          <%= link_to  "Accept", lessons_path, class: "btn btn-primary btn-sm mb-3" %>
+          <%= link_to  "Reject", lessons_path, class: "btn btn-danger btn-sm mb-3" %>
+            <% if booking.status == "Rejected" %>
+              <%= link_to "Delete", booking_path(booking), method: :delete, data: { confirm: "Are you sure?" } %>
+            <% end %>
+        <% end %>
       <% end %>
       </div>
       <p>_____________________________________________________________________________</p>
       </div>
     <% end %>
   </div>
-
-  <h3>Your Bookings</h3>
+  <div class="row">
+    <h3>Your Bookings</h3>
     <% @bookings.each do |booking| %>
       <p>Lesson: <%= link_to booking.lesson.name, lesson_path(booking.lesson) %> </p>
       <p>Teacher: <%= booking.lesson.user.first_name %> <%= booking.lesson.user.last_name %> </p>
-      <p>Time: <%= booking.start_time %> - <%= booking.end_time %> </p>
-      <p>Location: <%= booking.lesson.user.location %> </p>
+      <p>Price: <%= booking.total_price %></p>
+      <p>Time: <%= booking.start_time.strftime('%b %e, %l:%M %p') %> - <%= booking.end_time.strftime('%l:%M %p') %> </p>
+      <p>Location: <%= booking.lesson.user.location %></p>
     <% end %>
+  </div>
 </div>
