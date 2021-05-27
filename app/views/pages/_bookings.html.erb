@@ -5,10 +5,11 @@
         <div class="card-body">
           <h5 class="card-title"><%= link_to booking.lesson.name, lesson_path(booking.lesson), class: 'link-dark' %></h5>
           <h6 class="card-subtitle mb-2 text-muted">Teacher: <%= booking.lesson.user.first_name %> <%= booking.lesson.user.last_name %> </h6>
-          <p class="card-text"> 
-            From: <%= booking.start_time.strftime("%F") %> <%= booking.start_time.strftime("at %I:%M%p") %> <br> 
-            To: <%= booking.end_time.strftime("%F") %> <%= booking.end_time.strftime("at %I:%M%p") %> <br>
-            Location: <%= booking.lesson.user.location %> </p>
+          <p class="card-text">
+            Time: <%= booking.start_time.strftime('%b %e, %l:%M %p') %> - <%= booking.end_time.strftime('%l:%M %p')%> <br> 
+            Location: <%= booking.lesson.user.location %> <br>
+            <br>
+            Price: <%= booking.total_price %> <br>
           </p>
           <div class="btn btn-primary"><%= booking.status.capitalize %> </div>
           <div class="btn btn-warning"><%= link_to  "Leave a review", new_review_path(@review), class: 'line-dark' %></div>
@@ -16,3 +17,4 @@
       </div>
     <% end %>
   </div>
+  
