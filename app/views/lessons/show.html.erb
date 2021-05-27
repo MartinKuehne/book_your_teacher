@@ -10,9 +10,24 @@
     <% user = "#{@lesson.user.first_name} #{@lesson.user.last_name}"%>
     <h3> Teacher: <%= link_to user, root_path %> </h3>
     <!-- change root path to user path  -->
+    <div class="row">
+      <button id="click" class="btn btn-primary btn-sm mb-3">
+        Check profile
+      </button>
+    </div>
+    <div class="row d-none user-info">
+      <p>Based in <%= @lesson.user.location %> </p>
+      <p>E-Mail: <%= @lesson.user.email %> </p>
+      <p>Years of experience: <%= @lesson.user.years_of_exp %> </p>
+      <h3>Languages: </h3>
+      <% @lesson.user.languages.each do |language| %>
+          <p><%= language.name %> </p>
+        <% end %>
+    </div>
     <p><%= @lesson.description %></p>
     <p>The hourly rate for this lesson is: <strong><u> <%= @lesson.price %>€ </u></strong></p>
     <p>Ratings (<%= @lesson.reviews.length %>): <%= rating_average ? rating_average : 'No ratings yet' %>/5 </p>
+
   </div>
 </div>
 

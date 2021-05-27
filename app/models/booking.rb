@@ -11,11 +11,7 @@ class Booking < ApplicationRecord
     status = "pending"
   end
 
-  def set_accepted
-    status = "accepted"
-  end
-
-  def set_declined
-    status = "declined"
+  def total_price
+    ((end_time - start_time) / 3600.to_f) * lesson.price
   end
 end
