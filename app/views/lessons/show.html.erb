@@ -4,21 +4,23 @@
 <% rating_average = rating_average/@lesson.reviews.length %>
 <% end %>
 
-<h1 class="text-center"><%= @lesson.name %></h1>
+<h1 class="text-center mb-3"><%= @lesson.name %></h1>
 <div class="container">
   <div class="row">
     <% user = "#{@lesson.user.first_name} #{@lesson.user.last_name}"%>
     <h3 class="w-auto mb-4"> Teacher: <%= user %> </h3>
     <!-- change root path to user path  -->
     <div class="w-auto d-flex align-items-center mb-4"><i class="click fas fa-chevron-right d-block"></i></div>
-    <div class="row d-none user-info">
+    <div class="row d-none user-info text-center">
       <p>Based in <%= @lesson.user.location %> </p>
-      <p>E-Mail: <%= @lesson.user.email %> </p>
-      <p>Years of experience: <%= @lesson.user.years_of_exp %> </p>
+      <p>E-Mail: <u><%= @lesson.user.email %></u> </p>
+      <p>Years of experience: <strong><%= @lesson.user.years_of_exp %></strong> </p>
       <h3>Languages: </h3>
+      <ul class="list-group list-group-flush mb-3">
       <% @lesson.user.languages.each do |language| %>
-          <p><%= language.name %> </p>
+          <li class="list-group-item"><%= language.name %> </li>
         <% end %>
+      </ul>
     </div>
     <p><%= @lesson.description %></p>
     <p>The hourly rate for this lesson is: <strong><u> <%= @lesson.price %>€ </u></strong></p>
@@ -34,14 +36,14 @@
 <% else %>
   <div class="container">
     <div class="row">
-    <h3>Book this session:</h3>
+    <h3 class="text-center">Book this session:</h3>
       <%= render 'form', lesson: @lesson, booking: @booking%>
     </div>
   </div>
 <% end %>
 
-<div class="container mt-3">
-<h3>Reviews</h3>
+<div class="container mt-5">
+<h3 class="text-center">Reviews</h3>
 <ul class="list-group list-group-flush">
   <% @lesson.reviews.each do |review| %>
     <li class="list-group-item">
