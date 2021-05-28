@@ -1,6 +1,7 @@
-  <div class="d-flex flex-wrap justify-content-around">
+<div class="container">
+  <div class="row justify-content-center">
     <% @lessons.each do |lesson| %>
-      <div class="card m-3" style="width: 70vw;">
+      <div class="card col-sm-8 col-md-8 col-lg-5 m-2">
         <div class="card-body">
           <h5 class="card-title"><%= link_to lesson.name, lesson_path(lesson), class: 'link-dark' %></h5>
           <h6 class="card-subtitle mb-2 text-muted"> Created by you</h6>
@@ -11,3 +12,4 @@
       </div>
     <% end %>
   </div>
+</div>
