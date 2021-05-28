@@ -1,19 +1,20 @@
-
-   <div class="d-flex flex-wrap justify-content-around">
+<div class="container">
+  <div class="row justify-content-center">
     <% @bookings.each do |booking| %>
-      <div class="card m-3" style="width: 70vw;">
+      <div class="card col-sm-8 col-md-8 col-lg-5 m-2">
         <div class="card-body">
           <h5 class="card-title"><%= link_to booking.lesson.name, lesson_path(booking.lesson), class: 'link-dark' %></h5>
           <h6 class="card-subtitle mb-2 text-muted">Teacher: <%= booking.lesson.user.first_name %> <%= booking.lesson.user.last_name %> </h6>
           <p class="card-text mb-0">
-            Time: <%= booking.start_time.strftime('%b %e, %l:%M %p') %> - <%= booking.end_time.strftime('%l:%M %p')%> <br> 
+            Time: <%= booking.start_time.strftime('%b %e, %l:%M %p') %> - <%= booking.end_time.strftime('%l:%M %p')%> <br>
             Location: <%= booking.lesson.user.location %> <br>
             <br>
             Price (total): <%= booking.total_price.to_i %>€ <br>
           </p>
           <h6>Your booking status <strong><%= booking.status.capitalize %></strong></h6>
-          <div class="btn btn-warning"><%= link_to  "Leave a review", new_review_path(@review, booking_id: booking.id), class: 'line-dark' %></div>
+          <div class="btn btn-warning btn-blue"><%= link_to  "Leave a review", new_review_path(@review, booking_id: booking.id), class: 'line-dark' %></div>
         </div>
       </div>
     <% end %>
   </div>
+</div>
