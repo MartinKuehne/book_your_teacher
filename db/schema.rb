@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2021_05_27_123449) do
 
   create_table "lessons", force: :cascade do |t|
     t.string "name"
+    t.string "image", default: "https://source.unsplash.com/collection/1492681/450x300/"
     t.text "description"
     t.integer "price"
     t.bigint "user_id", null: false
