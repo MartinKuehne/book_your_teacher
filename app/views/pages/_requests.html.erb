@@ -2,20 +2,24 @@
   <div class="d-flex flex-wrap justify-content-around">
     <% @lessons.each do |lesson| %>
       <% lesson.bookings.each do |booking| %>
-        <div class="card m-3" style="width: 70vw;">  
-          <div class="card-body">
-            <h5 class="card-title"><%= link_to booking.lesson.name, lesson_path(booking.lesson), class: 'link-dark' %></h5>
-            <h6 class="card-subtitle mb-2 text-muted">User: <%= booking.user.first_name %> <%= booking.user.last_name %> </h6>
-            <p class="card-text">
-            Price: <%= booking.total_price %> <br>
-            Time: <%= booking.start_time.strftime('%b %e, %l:%M %p') %> - <%= booking.end_time.strftime('%l:%M %p') %> <br>
-            Location: <%= booking.lesson.user.location %> <br>
-            Status: <%= booking.status %> <br>
-            </p>
-            <%= link_to "Accept", booking_path(booking.id, status: 'accepted'), method: 'patch', class: "btn btn-success mb-3" %>
-            <%= link_to "Decline", booking_path(booking.id, status: 'declined'), method: 'patch', class: "btn btn-danger mb-3" %>
+        <% if booking.status != 'declined' %>
+          <div class="card m-3" style="width: 70vw;">  
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to booking.lesson.name, lesson_path(booking.lesson), class: 'link-dark' %></h5>
+              <h6 class="card-subtitle mb-2 text-muted">User: <%= booking.user.first_name %> <%= booking.user.last_name %> </h6>
+              <p class="card-text">
+              Price: <%= booking.total_price %> <br>
+              Time: <%= booking.start_time.strftime('%b %e, %l:%M %p') %> - <%= booking.end_time.strftime('%l:%M %p') %> <br>
+              Location: <%= booking.lesson.user.location %> <br>
+              Status: <%= booking.status %> <br>
+              </p>
+              <% if booking.status == 'pending' %>
+                <%= link_to "Accept", booking_path(booking.id, status: 'accepted'), method: 'patch', class: "btn btn-success mb-3" %>
+                <%= link_to "Decline", booking_path(booking.id, status: 'declined'), method: 'patch', class: "btn btn-danger mb-3" %>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>

@@ -9,7 +9,12 @@
 @import "font-awesome";
 
 // Your CSS partials
+@import "components/alert";
+@import "components/avatar";
+@import "components/buttons";
 @import "components/index";
+@import "components/navbar";
+@import "components/searchbar";
 @import "pages/index";
 @import "pages/dashboard";
 
@@ -34,4 +39,8 @@
   width:100%;
   height:60px;   /* Height of the footer */
   background:#6cf;
+}
+
+.black-bg {
+  background-color: black;
 }

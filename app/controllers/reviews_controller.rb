@@ -29,6 +29,6 @@ class ReviewsController < ApplicationController
   end
 
   def set_booking
-    @booking = Booking.find(params[:booking_id])
+    @booking = Booking.find(params[:review][:booking_id].to_i)
   end
 end

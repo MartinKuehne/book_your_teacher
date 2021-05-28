@@ -1,14 +1,9 @@
 .btn-submit {
   color: white;
   padding: 8px 24px;
+  min-width: 200px;
   border-radius: 4px;
   background: #3d84b8;
   transition: background 0.3s ease;
-}
-.medium {
-  width: 140px !important;
-  color: white !important;
-  padding: 8px 24px;
-  border-radius: 4px;
-  background: #3d84b8 !important;
+  margin-top: 24px;
 }
