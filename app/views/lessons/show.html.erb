@@ -8,13 +8,9 @@
 <div class="container">
   <div class="row">
     <% user = "#{@lesson.user.first_name} #{@lesson.user.last_name}"%>
-    <h3> Teacher: <%= link_to user, root_path %> </h3>
+    <h3 class="w-auto mb-4"> Teacher: <%= user %> </h3>
     <!-- change root path to user path  -->
-    <div class="row">
-      <button id="click" class="btn btn-primary btn-sm mb-3">
-        Check profile
-      </button>
-    </div>
+    <div class="w-auto d-flex align-items-center mb-4"><i class="click fas fa-chevron-right d-block"></i></div>
     <div class="row d-none user-info">
       <p>Based in <%= @lesson.user.location %> </p>
       <p>E-Mail: <%= @lesson.user.email %> </p>
@@ -26,8 +22,10 @@
     </div>
     <p><%= @lesson.description %></p>
     <p>The hourly rate for this lesson is: <strong><u> <%= @lesson.price %>€ </u></strong></p>
-    <p>Ratings (<%= @lesson.reviews.length %>): <%= rating_average ? rating_average : 'No ratings yet' %>/5 </p>
-
+    <p>Rating: <% @lesson.rating_average.times do %>
+        <i class="fas fa-star"></i>
+      <% end %>
+    </p>
   </div>
 </div>
 
@@ -44,8 +42,16 @@
 
 <div class="container mt-3">
 <h3>Reviews</h3>
-<% @lesson.reviews.each do |review| %>
-  <p>Rating: <%= review.rating %></p>
-  <p>Comment: <%= review.comment %></p>
-<% end %>
+<ul class="list-group list-group-flush">
+  <% @lesson.reviews.each do |review| %>
+    <li class="list-group-item">
+    <p>Rating: 
+    <% review.rating.times do %>
+      <i class="fas fa-star"></i>
+    <% end %>
+    </p>
+    <p>Comment: <%= review.comment %></p>
+    </li>
+  <% end %>
+</ul>
 </div>
