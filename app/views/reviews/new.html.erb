@@ -2,9 +2,10 @@
   <div class="row py-lg-5">
     <div class="col-lg-6 col-md-8 mx-auto">
       <h1 class="fw-light">Leave a review for your lesson</h1>
-      <%= simple_form_for @review do |f| %>
+      <%= simple_form_for [@review] do |f| %>
         <%= f.input :rating, placeholder: 'Enter number between 1-5' %>
         <%= f.input :comment, placeholder: 'Great lesson' %>
+        <%= f.hidden_field :booking_id, value: params[:booking_id] %>
         <%= f.submit class: 'btn btn-primary my-2' %>
       <% end %>
     </div>

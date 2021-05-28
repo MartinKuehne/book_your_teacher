@@ -4,7 +4,8 @@ class Lesson < ApplicationRecord
   has_many :lesson_topics
   has_many :bookings
   has_many :topics, through: :lesson_topics
-  has_many :reviews, through: :bookings
+  # added dependent destroy to reviews
+  has_many :reviews, through: :bookings, dependent: :destroy
   validates :name, presence: true
   validates :description, presence: true, length: { minimum: 20 }
   validates :price, presence: true
@@ -17,4 +18,8 @@ class Lesson < ApplicationRecord
                   using: {
                     tsearch: { prefix: true }
                   }
+
+  def rating_average
+    reviews.present? ? reviews.map(&:rating).sum / reviews.length : 0
+  end
 end
